@@ -153,6 +153,7 @@ module SafariHistToChrome
         replace visits: []
       end
       def last.build_entry
+        return unless key? :hiid
         Entry.new(*values_at(:url, :visit_count, :visits))
       end
       last.reset
@@ -161,8 +162,8 @@ module SafariHistToChrome
         last_hiid = last[:hiid]
         hiid, url, title, visit_count, visit_time = row
         if last_hiid != hiid
-          if last_hiid
-            yield last.build_entry
+          if entry = last.build_entry
+            yield entry
             last.reset
           end
           last.update \
@@ -172,7 +173,9 @@ module SafariHistToChrome
         end
         last[:visits] << VisitEntry.new(TimeConv.from_safari(visit_time), title)
       end
-      yield last.build_entry
+      if entry = last.build_entry
+        yield entry
+      end
     end
 
     Entry = Struct.new :url, :visit_count, :visits do
