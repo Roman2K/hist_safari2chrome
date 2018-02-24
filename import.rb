@@ -128,8 +128,7 @@ module SafariHistToChrome
         visit_count: url.visit_count,
         typed_count: 0,
         last_visit_time: TimeConv.to_chrome(last_visit.visit_time),
-        hidden: 0,
-        favicon_id: 0
+        hidden: 0
       ))
       url_id = @chromedb.last_insert_row_id
       unless url_id > 0
