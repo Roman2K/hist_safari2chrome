@@ -21,6 +21,8 @@ Locations of SQLite database files in macOS:
 * Safari: `~/Library/Safari/History.db`
 * Chrome: `~/Library/Application Support/Google/Chrome/Default/History`
 
+[Detailed instructions](https://github.com/Roman2K/hist_safari2chrome/issues/3#issuecomment-545005400)
+
 ## Credits
 
 Thanks to @dropmeaword. This script is inspired by his gist
